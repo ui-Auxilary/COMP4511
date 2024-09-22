@@ -8,6 +8,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
@@ -17,6 +18,7 @@ import {
   Poppins_500Medium,
 } from '@expo-google-fonts/poppins';
 
+import Swipe from './assets/swipe.gif';
 import ProfileImage from './assets/japan.jpg';
 import Blank from './assets/blank.png';
 import EyeOpen from './components/EyeOpen';
@@ -106,34 +108,35 @@ export default function App() {
           </View>
         </View>
         <View style={styles.option_container}>
-          <Pressable
+          <Image style={styles.swipe} source={Swipe} />
+          <TouchableOpacity
             onPress={() => {
               showAlert('reject');
             }}
             style={styles.option_cross}
           >
             <Cross />
-          </Pressable>
-          <Pressable
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => {
               showAlert('pass');
             }}
             style={styles.option_tick}
           >
             <Tick />
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.footer_container}>
         <Text style={styles.footer_text}>Toggle</Text>
-        <Pressable
+        <TouchableOpacity
           onPress={() => setVisible(!visible)}
           style={styles.eye_container}
         >
           <View style={styles.eye}>
             {visible ? <EyeOpen /> : <EyeClosed />}
           </View>
-        </Pressable>
+        </TouchableOpacity>
         <Text style={styles.footer_text}>Image</Text>
       </View>
     </View>
@@ -287,5 +290,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 60,
     height: 60,
+  },
+  swipe: {
+    width: 50,
+    height: 50,
+    position: 'absolute',
+    left: '50%',
+    transform: [{ translateX: -25 }],
   },
 });
